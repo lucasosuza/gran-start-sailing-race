@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetAxis("horizontal"))
-        { 
-            
+        if (Input.GetAxis("horizontal") != null) 
+        {
+            print("dsi");
         }
     }
 }
