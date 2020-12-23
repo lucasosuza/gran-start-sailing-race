@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlanetRotation : MonoBehaviour
 {
     public MeshRenderer Renderer;
+
     public float rotationSpeed = 10.0f;
     void Start()
     {
