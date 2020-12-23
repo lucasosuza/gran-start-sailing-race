@@ -63,4 +63,11 @@ public class PlayerMovement : MonoBehaviour
 
         return direction * acceleration;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.other.CompareTag("Planet")) {
+            Debug.Log("Crash!");
+        }
+    }
 }

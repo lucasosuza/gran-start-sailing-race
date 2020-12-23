@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!54 &3077982588605218643
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830343683580258890}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &3292971857357766283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,8 +28,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f048bbf4fbf7ae4988a0e4e71031f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Renderer: {fileID: 6830343683578066058}
-  rotationSpeed: 10
+  rotationMin: 0
+  rotationMax: 10
 --- !u!1001 &6830343683580357866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,7 +39,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 94e8b543ccfce214cbe3536377799049, type: 3}
       propertyPath: m_Name
-      value: forest Variant
+      value: Forest planet
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 94e8b543ccfce214cbe3536377799049, type: 3}
+      propertyPath: m_TagString
+      value: Planet
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 94e8b543ccfce214cbe3536377799049, type: 3}
       propertyPath: m_LocalPosition.x
@@ -69,17 +89,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -74.72601
       objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: 94e8b543ccfce214cbe3536377799049, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94e8b543ccfce214cbe3536377799049, type: 3}
 --- !u!1 &6830343683580258890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 94e8b543ccfce214cbe3536377799049,
-    type: 3}
-  m_PrefabInstance: {fileID: 6830343683580357866}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6830343683578066058 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300000, guid: 94e8b543ccfce214cbe3536377799049,
     type: 3}
   m_PrefabInstance: {fileID: 6830343683580357866}
   m_PrefabAsset: {fileID: 0}
