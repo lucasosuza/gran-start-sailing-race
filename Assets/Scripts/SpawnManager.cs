@@ -35,6 +35,8 @@ public class SpawnManager : MonoBehaviour
         target.transform.position = new Vector3(start.transform.position.x + 100, 
             start.transform.position.y + 100, 
             start.transform.position.z + 100);
+
+        target.transform.SetParent(transform.parent);
         // target.transform.position = start.transform.position * Random.Range(0, limitX * level);
     }
 
@@ -42,6 +44,7 @@ public class SpawnManager : MonoBehaviour
     {
         GameObject target = Instantiate(start);
         target.transform.position = Vector3.zero;
+        target.transform.SetParent(transform.parent);
     }
 
     private void SpawnPlanets()
@@ -61,6 +64,7 @@ public class SpawnManager : MonoBehaviour
 
         float randomScale = Random.Range(1, limitScale + 1);
         target.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+        target.transform.SetParent(transform.parent);
     }
 
     Vector3 generatePosition() 
