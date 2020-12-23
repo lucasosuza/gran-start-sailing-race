@@ -14,7 +14,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!114 &2238170025354761131
 MonoBehaviour:
@@ -113,7 +113,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_Name
-      value: Beach planet
+      value: Beach planet - Starting planet
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_TagString
@@ -133,19 +133,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.6762454
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.24024028
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6949012
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.045706432
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_RootOrder
@@ -165,15 +165,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6400000, guid: b635153924a26964a8ff847ab96f7af7, type: 3}
       propertyPath: m_Convex

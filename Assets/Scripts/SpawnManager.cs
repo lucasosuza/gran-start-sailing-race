@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     public float limitY = 500f;
     public float limitZ = 500f;
     
-    public float limitScale = 50f;
+    public float limitScale = 10f;
 
     public int numberOfObjects = 9;
 
@@ -30,8 +30,11 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnd()
     {
+        // TODO improve the end position
         GameObject target = Instantiate(end);
-        target.transform.position = start.transform.position * 2;
+        target.transform.position = new Vector3(start.transform.position.x + 100, 
+            start.transform.position.y + 100, 
+            start.transform.position.z + 100);
         // target.transform.position = start.transform.position * Random.Range(0, limitX * level);
     }
 
@@ -54,13 +57,29 @@ public class SpawnManager : MonoBehaviour
         int index = Random.Range(0, objects.Length);
         GameObject target = Instantiate(objects[index]);
 
-        target.transform.position = new Vector3(
+        target.transform.position = generatePosition();
+
+        float randomScale = Random.Range(1, limitScale + 1);
+        target.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+    }
+
+    Vector3 generatePosition() 
+    {
+        Vector3 spawnPos = new Vector3(
             Random.Range(-1 * limitX, limitX),
             Random.Range(-1 * limitY, limitY),
-            Random.Range(-1 * limitZ, limitZ)
-            );
+            Random.Range(-1 * limitZ, limitZ));
 
-        float randomScale = Random.Range(limitScale/5, limitScale);
-        target.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+        float radius = 100f;
+ 
+        if (!Physics.CheckSphere(spawnPos, radius))
+        {
+            return spawnPos;
+        }
+        else
+        {
+            return generatePosition();
+        }
+
     }
 }
