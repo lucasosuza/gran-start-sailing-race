@@ -6,6 +6,10 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] objects;
 
+    public GameObject start;
+
+    public GameObject end;
+
     public float limitX = 500f;
     public float limitY = 500f;
     public float limitZ = 500f;
@@ -14,10 +18,27 @@ public class SpawnManager : MonoBehaviour
 
     public int numberOfObjects = 9;
 
+    public float level = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
         SpawnPlanets();
+        SpawnStart();
+        SpawnEnd();
+    }
+
+    private void SpawnEnd()
+    {
+        GameObject target = Instantiate(end);
+        target.transform.position = start.transform.position * 2;
+        // target.transform.position = start.transform.position * Random.Range(0, limitX * level);
+    }
+
+    private void SpawnStart()
+    {
+        GameObject target = Instantiate(start);
+        target.transform.position = Vector3.zero;
     }
 
     private void SpawnPlanets()

@@ -69,5 +69,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.other.CompareTag("Planet")) {
             Debug.Log("Crash!");
         }
+
+        if (collision.other.CompareTag("End"))
+        {
+            Debug.Log("Found!");
+        }
     }
 }
