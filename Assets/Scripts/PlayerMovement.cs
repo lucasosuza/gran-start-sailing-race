@@ -10,21 +10,37 @@ public class PlayerMovement : MonoBehaviour
     public float accSprintMultiplier = 4;
     public float dampingCoefficient = 5;
 
+    public bool focusEnable = true;
+
     Vector3 velocity;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public GameController gameController;
 
+    bool Focused
+    {
+        get => Cursor.lockState == CursorLockMode.Locked;
+        set
+        {
+            Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = value == false;
+        }
     }
+
+    void OnDisable() => Focused = false;
 
     // Update is called once per frame
     void Update()
     {
-        UpdateInput();
+        if (enabled)
+        {
+            if (Focused)
+                UpdateInput();
+            else if (Input.GetMouseButtonDown(0))
+                Focused = true;
 
-        velocity = Vector3.Lerp(velocity, Vector3.zero, dampingCoefficient * Time.deltaTime);
-        transform.position += velocity * Time.deltaTime;
+            velocity = Vector3.Lerp(velocity, Vector3.zero, dampingCoefficient * Time.deltaTime);
+            transform.position += velocity * Time.deltaTime;
+        }
     }
 
     private void UpdateInput()
@@ -35,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
         Vector2 mouseDelta = lookSensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
         transform.Rotate(Vector3.up, mouseDelta.x, Space.World);
         transform.Rotate(Vector3.right, mouseDelta.y, Space.Self);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Focused = false;
+        }
     }
 
     private Vector3 GetAccelerationVector()
@@ -66,8 +87,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.other.CompareTag("Planet")) {
-            Debug.Log("Crash!");
+
+        Debug.Log(collision.collider.gameObject.tag);
+
+        if (collision.collider.gameObject.CompareTag("Planet") || collision.collider.gameObject.CompareTag("Star")) 
+        {
+
+            gameController.Crash();
+            enabled = false;
+        }
+
+        if (collision.collider.gameObject.CompareTag("End"))
+        {
+            gameController.Win();
+            enabled = false;
         }
     }
 }

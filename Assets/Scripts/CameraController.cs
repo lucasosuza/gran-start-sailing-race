@@ -18,6 +18,8 @@ public class CameraController : MonoBehaviour
 
     Vector3 velocity;
 
+    PlayerMovement playerMovement;
+
     bool Focused {
         get => Cursor.lockState == CursorLockMode.Locked;
         set {
@@ -33,11 +35,19 @@ public class CameraController : MonoBehaviour
 
     void OnDisable() => Focused = false;
 
-
+    void Start()
+    {
+        playerMovement = gameObject.GetComponentInParent<PlayerMovement>();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(1)) {
+            //enabled = enabled ? false : true;
+            playerMovement.enabled = enabled ? false : true;
+        }
+
         if (enabled) {
             if (Focused)
                 UpdateInput();

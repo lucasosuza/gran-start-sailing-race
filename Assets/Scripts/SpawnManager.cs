@@ -6,18 +6,47 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] objects;
 
+    public GameObject start;
+
+    public GameObject end;
+    public float endDistance = 200f;
+    public float emptyRadius = 200f;
+
     public float limitX = 500f;
     public float limitY = 500f;
     public float limitZ = 500f;
     
-    public float limitScale = 50f;
+    public float limitScale = 10f;
 
     public int numberOfObjects = 9;
+
+    public float level = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnPlanets();
+        SpawnStart();
+        SpawnEnd();
+    }
+
+    private void SpawnEnd()
+    {
+        // TODO improve the end position
+        GameObject target = Instantiate(end);
+        target.transform.position = new Vector3(start.transform.position.x + endDistance, 
+            start.transform.position.y + endDistance, 
+            start.transform.position.z + endDistance);
+
+        target.transform.SetParent(transform.parent);
+        // target.transform.position = start.transform.position * Random.Range(0, limitX * level);
+    }
+
+    private void SpawnStart()
+    {
+        GameObject target = Instantiate(start);
+        target.transform.position = Vector3.zero;
+        target.transform.SetParent(transform.parent);
     }
 
     private void SpawnPlanets()
@@ -33,13 +62,29 @@ public class SpawnManager : MonoBehaviour
         int index = Random.Range(0, objects.Length);
         GameObject target = Instantiate(objects[index]);
 
-        target.transform.position = new Vector3(
+        target.transform.position = generatePosition();
+
+        float randomScale = Random.Range(1, limitScale + 1);
+        target.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+        target.transform.SetParent(transform.parent);
+    }
+
+    Vector3 generatePosition() 
+    {
+        Vector3 spawnPos = new Vector3(
             Random.Range(-1 * limitX, limitX),
             Random.Range(-1 * limitY, limitY),
-            Random.Range(-1 * limitZ, limitZ)
-            );
+            Random.Range(-1 * limitZ, limitZ));
+ 
+        if (!Physics.CheckSphere(spawnPos, emptyRadius))
+        {
+            return spawnPos;
+        }
+        else
+        {
+            Debug.Log("Posicao ocupada");
+            return generatePosition();
+        }
 
-        float randomScale = Random.Range(limitScale/5, limitScale);
-        target.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
     }
 }
