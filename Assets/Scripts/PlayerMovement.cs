@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
 
+    public GameController gameController;
+
     bool Focused
     {
         get => Cursor.lockState == CursorLockMode.Locked;
@@ -85,13 +87,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.other.CompareTag("Planet")) {
+        if (collision.collider.gameObject.CompareTag("Planet")) {
             Debug.Log("Crash!");
+            gameController.Crash();
         }
 
-        if (collision.other.CompareTag("End"))
+        if (collision.collider.gameObject.CompareTag("End"))
         {
             Debug.Log("Found!");
+
+            gameController.Win();
         }
     }
 }

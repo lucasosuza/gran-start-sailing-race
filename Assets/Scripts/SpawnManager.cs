@@ -9,6 +9,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject start;
 
     public GameObject end;
+    public float endDistance = 200f;
+    public float emptyRadius = 200f;
 
     public float limitX = 500f;
     public float limitY = 500f;
@@ -32,9 +34,9 @@ public class SpawnManager : MonoBehaviour
     {
         // TODO improve the end position
         GameObject target = Instantiate(end);
-        target.transform.position = new Vector3(start.transform.position.x + 100, 
-            start.transform.position.y + 100, 
-            start.transform.position.z + 100);
+        target.transform.position = new Vector3(start.transform.position.x + endDistance, 
+            start.transform.position.y + endDistance, 
+            start.transform.position.z + endDistance);
 
         target.transform.SetParent(transform.parent);
         // target.transform.position = start.transform.position * Random.Range(0, limitX * level);
@@ -73,15 +75,14 @@ public class SpawnManager : MonoBehaviour
             Random.Range(-1 * limitX, limitX),
             Random.Range(-1 * limitY, limitY),
             Random.Range(-1 * limitZ, limitZ));
-
-        float radius = 100f;
  
-        if (!Physics.CheckSphere(spawnPos, radius))
+        if (!Physics.CheckSphere(spawnPos, emptyRadius))
         {
             return spawnPos;
         }
         else
         {
+            Debug.Log("Posicao ocupada");
             return generatePosition();
         }
 
