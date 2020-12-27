@@ -87,16 +87,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.CompareTag("Planet")) {
-            Debug.Log("Crash!");
+
+        Debug.Log(collision.collider.gameObject.tag);
+
+        if (collision.collider.gameObject.CompareTag("Planet") || collision.collider.gameObject.CompareTag("Star")) 
+        {
+
             gameController.Crash();
+            enabled = false;
         }
 
         if (collision.collider.gameObject.CompareTag("End"))
         {
-            Debug.Log("Found!");
-
             gameController.Win();
+            enabled = false;
         }
     }
 }
